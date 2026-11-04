@@ -1,0 +1,33 @@
+# Compiled binaries and executables (WSL / Linux / Windows)
+rbt-tests
+first-step
+*.exe
+*.out
+*.app
+
+# Object files and compiler intermediate / debug files
+*.o
+*.obj
+*.pdb
+*.ilk
+*.dSYM/
+*.suo
+*.idb
+
+# Assignment instructions, rubrics, and documentation PDFs
+*.pdf
+*.docx
+*.doc
+
+# Editor and IDE metadata / temporary files
+.vscode/
+.idea/
+*.swp
+*~
+*.bak
+
+# Operating System generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
