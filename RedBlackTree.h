@@ -6,9 +6,11 @@
 
 // Resource citations:
 // 1. USFCA Red-Black Tree Visualizer: https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
-// 2. TutorialsPoint RBT Insertion: https://www.tutorialspoint.com/insertion-in-the-red-black-tree-in-data-structure
-// 3. BTech Smart Class Red-Black Trees: http://btechsmartclass.com/data_structures/red-black-trees.html
-// 4. zyBooks Section 16 (Red-Black Trees)
+// 2. TutorialsPoint RBT: https://www.tutorialspoint.com/insertion-in-the-red-black-tree-in-data-structure
+// 3. University of Toronto CSC265 RBT Deletion: http://www.cs.toronto.edu/~wgeorge/csc265/2013/09/26/tutorial-3-red-black-tree-deletion.html
+// 4. USNA SI321 Red-Black Trees: https://www.usna.edu/Users/cs/crabbe/SI321/current/red-black/red-black.html
+// 5. zyBooks Section 16 (Red-Black Trees & In-order successor)
+// 6. F&M CPS222 Lecture on Red-Black Tree Removal & Trinode Restructuring
 
 // Color definitions:
 // Using integer constants via #define makes color assignments clean and readable (e.g., node->color = COLOR_RED)
@@ -46,12 +48,19 @@ public:
     // Deep copy constructor: ensures independent subtree copy without pointer sharing
     RedBlackTree(const RedBlackTree &other);
 
+    // Copy assignment operator: clean deep copy avoiding double-free
+    RedBlackTree& operator=(const RedBlackTree &other);
+
     // Destructor: ensures full recursive memory cleanup of all allocated nodes
     ~RedBlackTree();
 
     // Inserts a new integer into the red-black tree, maintaining all RBT invariants.
     // Throws invalid_argument on duplicate values.
     void Insert(int value);
+
+    // Removes an integer from the red-black tree while maintaining all RBT invariants.
+    // Uses in-order successor algorithm and double-black fixup restructuring.
+    void Remove(int data);
 
     // Checks if the given value is present anywhere in the tree.
     bool Contains(int value) const;
@@ -89,6 +98,12 @@ private:
 
     // Insertion fixup to restore red-black properties after standard BST insertion
     void InsertFixup(RBTNode *z);
+
+    // Deletion fixup to restore red-black properties after removing a black node (double black resolution)
+    void RemoveFixup(RBTNode *x);
+
+    // Helper to find the in-order successor (minimum node in a subtree)
+    RBTNode* MinValueNode(RBTNode *node) const;
 
     // Recursive helpers for deep copying and destroying subtrees
     RBTNode* CopyTree(const RBTNode *node, RBTNode *parent);
