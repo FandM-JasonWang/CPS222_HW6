@@ -1,6 +1,7 @@
 # Compiled binaries and executables (WSL / Linux / Windows)
 rbt-tests
 first-step
+speed-test
 *.exe
 *.out
 *.app
@@ -30,4 +31,11 @@ first-step
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Private testing files and temporary notes
+ExtremeStressTests.cpp
+stress-test
+*stress*
+PLAN.md
+SpeedTestStarterCode.cpp
 
